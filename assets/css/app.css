@@ -1,0 +1,162 @@
+.card-img-top{
+    max-width:150px;
+    align: center;
+}
+.card{
+    margin: 15px 15px 15px 15px;
+}
+.add{
+    max-width:150px;
+    margin: 15px 15px 15px 15px;
+}
+.card-title{
+    text-align: center !important;
+}
+.search{
+    max-width:300px;
+    max-height: 38px;
+}
+.red{
+    color: red;
+}
+.green{
+    color: green;
+}
+.blue{
+    color: blue;
+}
+.input-change-sm{
+    max-width: 80px;
+}
+.img_size {
+	display: block;
+	max-width: 77%;
+	height: auto;
+}
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.card:hover{
+	border-color: red;
+}
+
+.img_size {
+	display: block;
+	max-width: 77%;
+	height: auto;
+}
+
+.calcprice {
+	width: 60px;
+	height: 30px;
+	background-color: transparent;
+
+}
+
+.calcprice2 {
+	width: 350px;
+	height: 30px;
+	background-color: transparent;
+
+
+}
+
+.calcprice3 {
+	width: 150px;
+	height: 30px;
+	background-color: transparent;
+
+
+}
+
+.calcprice4 {
+	width: 150px;
+	height: 30px;
+	background-color: transparent;
+
+
+}
+
+.my-custom-scrollbar {
+	position: relative;
+	height: 800px;
+	overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+	display: block;
+}
+
+
+/* увеличенная картинка */
+#magnify {
+	display: none;
+
+	/* position: absolute; upd: 24.10.2016 */
+	position: fixed;
+	max-width: 600px;
+	height: auto;
+	width: auto;
+	z-index: 9999;
+}
+
+#magnify img {
+	width: 100%;
+}
+
+/* затемняющий фон */
+#overlay {
+	display: none;
+
+	background: #000;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0.5;
+	z-index: 9990;
+}
+
+/* кнопка закрытия */
+#close-popup {
+	width: 30px;
+	height: 30px;
+
+	background: #FFFFFF;
+	border: 1px solid #AFAFAF;
+	border-radius: 15px;
+	cursor: pointer;
+	position: absolute;
+	top: 15px;
+	left: 15px;
+}
+
+#close-popup i {
+	width: 30px;
+	height: 30px;
+	background: url(https://codernote.ru/files/cross.png) no-repeat center center;
+	background-size: 16px 16px;
+	display: block;
+}
+
+@keyframes rota {
+	25% {
+		transform: rotate(360deg);
+	}
+}
+
+#close-popup:hover {
+	animation: rota 4s infinite normal;
+	-webkit-animation-iteration-count: 1;
+	animation-iteration-count: 1;
+}
+td{
+    overflow: auto;
+    white-space: nowrap;
+}
+.hidden{
+	display:none;
+}

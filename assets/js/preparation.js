@@ -945,10 +945,38 @@ $(document).ready(function() {
         return true;
     }
 
+    function searchNumberDelo(){
+        let text_main = '{';
+        text_main = text_main + '"abbr_arh": "' + $("#abbr_arh").val() + '", ';
+        text_main = text_main + '"n_fonda": ' + $("#n_fonda").val() + ',';
+        text_main = text_main + '"n_opisi": ' + $("#n_opisi").val() + ',  ';
+        text_main = text_main + '"n_dela": ' + $("#n_dela").val() + ', ';
+        text_main = text_main + '"l_dela": "' + $("#l_dela").val() + '"}';
+
+        var dateid = {
+            "text_main": text_main
+        };
+
+        $.post('bd_get_info_by_delo.php', dateid, function(data) {
+            data = JSON.parse(data)
+
+            if(data['success'] == "true") {
+                toastr.success(data['text']);
+            }else{
+                toastr.error(data['text']);
+            }
+        })
+    }
+
     $(document).on('click', '#save_1', function() {
         if(validation() == false) {
             return;
         }
+
+        if(searchNumberDelo() == false) {
+            return;
+        }
+
         setNameAndDirectScan();
         saveBD('bd_insert.php');
     });
@@ -971,6 +999,10 @@ $(document).ready(function() {
     $(document).on('click', '#save_5', function() {
         setNameAndDirectScan();
         saveBD('bd_5.php');
+    });    
+    
+    $(document).on('click', '#get_info_by_delo', function() {
+        searchNumberDelo()
     });
 });
 

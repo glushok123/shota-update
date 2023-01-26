@@ -18,6 +18,10 @@
                         </div>
 
                         <div class='col'>
+                            <button id="get_info_by_delo" type="button" class="btn btn-warning m-1 px-5 radius-30"> Проверить наличие <br> в БД </button>
+                        </div>
+
+                        <div class='col'>
                             <button id="avtoname" type="button" class="btn btn-info m-1 px-5 radius-30">АВТО <br> переименование</button>
                         </div>
 
@@ -41,24 +45,6 @@
 					<hr>
                     <div class='container-fluid'>
                         <?php
-                            /*
-                            function myscandir($dir, $sort=0)
-                            {
-                                $list = scandir($dir, $sort);
-
-                                if (! $list) return false;
-                                if ($sort == 0) unset($list[0],$list[1]);
-                                else unset($list[count($list)-1], $list[count($list) - 1]);
-                                return $list;
-                            }
-
-                            $dir = 'сюда_кидать';
-                            $files1 = myscandir($dir);
-
-                            foreach ($files1 as $value) {
-                                echo '<button id="dir" data-v="'.$value.'" type="button" class="btn btn btn-secondary m-1 px-5 radius-30 search-dir">'.$value.'</button>' ;
-                            }*/
-
                             function getDirContentsNews($dir, &$results = array()) {
                                 $files = scandir($dir);
 

@@ -16,18 +16,18 @@ if (! file_exists($file)) {
 
 file_put_contents($filename, $text);
 
-//$output = shell_exec('E:\\OSPanel\\domains\\shota-update\\db_insert.py ' . $filename);
-$output = shell_exec( __DIR__ . '\\db_insert.py ' . $filename);
+$output = shell_exec( __DIR__ . '\\db_get_info_by_delo.py ' . $filename);
+
 
 if (trim($output) == 'error'){
     $output = [
         'success' => 'false',
-        'text' => '!!! Ошибка при записи в БД, проверьте правильность ввода атрибутов !!!',
+        'text' => "Ошибка при поиске дела в БД !"
     ];
 }else{
     $output = [
-        'success' => 'true',
-        'text' => 'Успешно записано в БД: ' . $output,
+        'success' => $output > 0 ? 'false' : 'true',
+        'text' => $output > 0 ? "В базе данных найдено записей " . $output . " похожих на это дело!" : "Похожих записей не найдено"
     ];
 }
 

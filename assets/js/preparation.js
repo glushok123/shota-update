@@ -1,42 +1,220 @@
 $(document).ready(function() {
     toastr.options.timeOut = 5000; // 3s
-    var kol = 0
-    var schet = 0
-    var size_f = []
-    var testsize = 0
+    var kol = 0;
+    var schet = 0;
+    var size_f = [];
+    var testsize = 0;
+    var withoutFrills = false;
 
     function checksize(files) {
-        if($('#scales').is(':checked')) {
-            testsize = 1
+        if ($('#scales').is(':checked')) {
+            testsize = 1;
         } else {
-            testsize = 0
+            testsize = 0;
         }
+
+        if ($('#withoutFrills').is(':checked')) {
+            withoutFrills = true;
+        } else {
+            withoutFrills = false;
+        }
+
         var img = new Image();
         img.src = files;
+
         img.onload = function() {
             wi = this.width + 300
             hi = this.height
             $("tr.item").each(function() {
-                if($(this).attr('data-namedir') == files) {
-                    $(this).attr('data-wf', wi)
-                    $(this).attr('data-hf', hi)
-                    schet = schet + 1
-                    if(schet == kol) {
-                        var z_pred = "-1"
-                        var z_pred_str = "123"
-                        var z_s_pred = "0"
-                        $('.pace').removeClass('pace-active')
-                        $('.pace').addClass('pace-inactive')
-                        $("tr.item").each(function() {
-                            z_s = $(this).find(".list").val()
-                            if(z_pred == "-1") {
-                                z_pred = "0"
-                                $(this).find(".list").val("0бл")
-                            } else {
-                                if(testsize == 0) {
-                                    if($(this).attr('data-wf') < $(this).attr('data-hf')) {
+                if ($(this).attr('data-namedir') == files) {
+                    $(this).attr('data-wf', wi);
+                    $(this).attr('data-hf', hi);
+                    schet = schet + 1;
+
+                    if (schet == kol) {
+                        var z_pred = "-1";
+                        var z_pred_str = "123";
+                        var z_s_pred = "0";
+                        $('.pace').removeClass('pace-active');
+                        $('.pace').addClass('pace-inactive');
+
+                        if (withoutFrills == true) {
+                            $("tr.item").each(function() {
+                                z_s = $(this).find(".list").val();
+    
+                                if(z_pred == "-1") {
+                                    z_pred = "0"
+                                    $(this).find(".list").val("0бл")
+                                } else {
+                                    if(z_s_pred == "0") {
+                                        if((! z_pred_str.toString().includes("об"))) {
+                                            if(z_pred == "0") {
+                                                z_pred = '1'
+                                                $(this).find(".list").val("0001")
+                                            } else {
+                                                z_pred = parseInt(z_pred)
+                                                z_s = z_pred + 1
+                                                z_pred = z_s
+                                                z_pred_str = z_s
+                                                if(z_s.toString().length == 1) {
+                                                    z_s = "000" + z_s
+                                                }
+                                                if(z_s.toString().length == 2) {
+                                                    z_s = "00" + z_s
+                                                }
+                                                if(z_s.toString().length == 3) {
+                                                    z_s = "0" + z_s
+                                                }
+                                                if(z_s.toString().length == 4) {
+                                                    z_s = z_s
+                                                }
+                                                $(this).find(".list").val(z_s)
+                                            }
+                                        } else {
+                                            z_pred = parseInt(z_pred)
+                                            z_s = z_pred + 1
+                                            z_pred = z_s
+                                            z_pred_str = z_s
+                                            if(z_s.toString().length == 1) {
+                                                z_s = "000" + z_s
+                                            }
+                                            if(z_s.toString().length == 2) {
+                                                z_s = "00" + z_s
+                                            }
+                                            if(z_s.toString().length == 3) {
+                                                z_s = "0" + z_s
+                                            }
+                                            if(z_s.toString().length == 4) {
+                                                z_s = z_s
+                                            }
+                                            $(this).find(".list").val(z_s)
+                                        }
+                                    } else {
+                                        z_pred = parseInt(z_pred)
+                                        z_s = z_pred + 1
+                                        z_pred = z_s
+                                        z_pred_str = z_s
+                                        if(z_s.toString().length == 1) {
+                                            z_s = "000" + z_s
+                                        }
+                                        if(z_s.toString().length == 2) {
+                                            z_s = "00" + z_s
+                                        }
+                                        if(z_s.toString().length == 3) {
+                                            z_s = "0" + z_s
+                                        }
+                                        if(z_s.toString().length == 4) {
+                                            z_s = z_s
+                                        }
+                                        $(this).find(".list").val(z_s)
+                                    }
+                                    z_s_pred = "0"
+                                }
+                            })
+                        }
+                        else{
+                            $("tr.item").each(function() {
+                                z_s = $(this).find(".list").val();
+    
+                                if(z_pred == "-1") {
+                                    z_pred = "0"
+                                    $(this).find(".list").val("0бл")
+                                } else {
+                                    if(testsize == 0) {
+                                        if($(this).attr('data-wf') < $(this).attr('data-hf')) {
+                                            if(z_s_pred == "0") {
+                                                if((!z_pred_str.toString().includes("об"))) {
+                                                    if(z_pred == "0") {
+                                                        z_pred = '1'
+                                                        $(this).find(".list").val("0001")
+                                                    } else {
+                                                        if(z_pred.toString().length == 1) {
+                                                            z_pred_strg = "000" + z_pred + "об"
+                                                        }
+                                                        if(z_pred.toString().length == 2) {
+                                                            z_pred_strg = "00" + z_pred + "об"
+                                                        }
+                                                        if(z_pred.toString().length == 3) {
+                                                            z_pred_strg = "0" + z_pred + "об"
+                                                        }
+                                                        if(z_pred.toString().length == 4) {
+                                                            z_pred_strg = z_pred + "об"
+                                                        }
+                                                        z_pred_str = z_pred + "об"
+                                                        $(this).find(".list").val(z_pred_strg)
+                                                    }
+                                                } else {
+                                                    z_pred = parseInt(z_pred)
+                                                    z_s = z_pred + 1
+                                                    z_pred = z_s
+                                                    z_pred_str = z_s
+                                                    if(z_s.toString().length == 1) {
+                                                        z_s = "000" + z_s
+                                                    }
+                                                    if(z_s.toString().length == 2) {
+                                                        z_s = "00" + z_s
+                                                    }
+                                                    if(z_s.toString().length == 3) {
+                                                        z_s = "0" + z_s
+                                                    }
+                                                    if(z_s.toString().length == 4) {
+                                                        z_s = z_s
+                                                    }
+                                                    $(this).find(".list").val(z_s)
+                                                }
+                                            } else {
+                                                z_pred_str = z_pred + "об"
+                                                if(z_pred.toString().length == 1) {
+                                                    z_pred_strg = "000" + z_pred + "об"
+                                                }
+                                                if(z_pred.toString().length == 2) {
+                                                    z_pred_strg = "00" + z_pred + "об"
+                                                }
+                                                if(z_pred.toString().length == 3) {
+                                                    z_pred_strg = "0" + z_pred + "об"
+                                                }
+                                                if(z_pred.toString().length == 4) {
+                                                    z_pred_strg = z_pred + "об"
+                                                }
+                                                $(this).find(".list").val(z_pred_strg)
+                                            }
+                                            z_s_pred = "0"
+                                        } else {
+                                            z_s_pred = "1"
+                                            z_predt = z_pred
+                                            z_pred = parseInt(z_pred)
+                                            t2 = z_pred + 1
+                                            if(z_predt.toString().length == 1) {
+                                                z_predt = "000" + z_pred
+                                            }
+                                            if(z_predt.toString().length == 2) {
+                                                z_predt = "00" + z_predt
+                                            }
+                                            if(z_predt.toString().length == 3) {
+                                                z_predt = "0" + z_predt
+                                            }
+                                            if(z_predt.toString().length == 4) {
+                                                z_predt = z_predt
+                                            }
+                                            if(t2.toString().length == 1) {
+                                                t2 = "000" + t2
+                                            }
+                                            if(t2.toString().length == 2) {
+                                                t2 = "00" + t2
+                                            }
+                                            if(t2.toString().length == 3) {
+                                                t2 = "0" + t2
+                                            }
+                                            if(t2.toString().length == 4) {
+                                                t2 = t2
+                                            }
+                                            z_s = z_predt + "об_" + (t2) + "л"
+                                            z_pred = z_pred + 1
+                                            $(this).find(".list").val(z_s)
+                                        }
+                                    } else {
                                         if(z_s_pred == "0") {
-                                            if((!z_pred_str.toString().includes("об"))) {
+                                            if((! z_pred_str.toString().includes("об"))) {
                                                 if(z_pred == "0") {
                                                     z_pred = '1'
                                                     $(this).find(".list").val("0001")
@@ -92,100 +270,10 @@ $(document).ready(function() {
                                             $(this).find(".list").val(z_pred_strg)
                                         }
                                         z_s_pred = "0"
-                                    } else {
-                                        z_s_pred = "1"
-                                        z_predt = z_pred
-                                        z_pred = parseInt(z_pred)
-                                        t2 = z_pred + 1
-                                        if(z_predt.toString().length == 1) {
-                                            z_predt = "000" + z_pred
-                                        }
-                                        if(z_predt.toString().length == 2) {
-                                            z_predt = "00" + z_predt
-                                        }
-                                        if(z_predt.toString().length == 3) {
-                                            z_predt = "0" + z_predt
-                                        }
-                                        if(z_predt.toString().length == 4) {
-                                            z_predt = z_predt
-                                        }
-                                        if(t2.toString().length == 1) {
-                                            t2 = "000" + t2
-                                        }
-                                        if(t2.toString().length == 2) {
-                                            t2 = "00" + t2
-                                        }
-                                        if(t2.toString().length == 3) {
-                                            t2 = "0" + t2
-                                        }
-                                        if(t2.toString().length == 4) {
-                                            t2 = t2
-                                        }
-                                        z_s = z_predt + "об_" + (t2) + "л"
-                                        z_pred = z_pred + 1
-                                        $(this).find(".list").val(z_s)
                                     }
-                                } else {
-                                    if(z_s_pred == "0") {
-                                        if((!z_pred_str.toString().includes("об"))) {
-                                            if(z_pred == "0") {
-                                                z_pred = '1'
-                                                $(this).find(".list").val("0001")
-                                            } else {
-                                                if(z_pred.toString().length == 1) {
-                                                    z_pred_strg = "000" + z_pred + "об"
-                                                }
-                                                if(z_pred.toString().length == 2) {
-                                                    z_pred_strg = "00" + z_pred + "об"
-                                                }
-                                                if(z_pred.toString().length == 3) {
-                                                    z_pred_strg = "0" + z_pred + "об"
-                                                }
-                                                if(z_pred.toString().length == 4) {
-                                                    z_pred_strg = z_pred + "об"
-                                                }
-                                                z_pred_str = z_pred + "об"
-                                                $(this).find(".list").val(z_pred_strg)
-                                            }
-                                        } else {
-                                            z_pred = parseInt(z_pred)
-                                            z_s = z_pred + 1
-                                            z_pred = z_s
-                                            z_pred_str = z_s
-                                            if(z_s.toString().length == 1) {
-                                                z_s = "000" + z_s
-                                            }
-                                            if(z_s.toString().length == 2) {
-                                                z_s = "00" + z_s
-                                            }
-                                            if(z_s.toString().length == 3) {
-                                                z_s = "0" + z_s
-                                            }
-                                            if(z_s.toString().length == 4) {
-                                                z_s = z_s
-                                            }
-                                            $(this).find(".list").val(z_s)
-                                        }
-                                    } else {
-                                        z_pred_str = z_pred + "об"
-                                        if(z_pred.toString().length == 1) {
-                                            z_pred_strg = "000" + z_pred + "об"
-                                        }
-                                        if(z_pred.toString().length == 2) {
-                                            z_pred_strg = "00" + z_pred + "об"
-                                        }
-                                        if(z_pred.toString().length == 3) {
-                                            z_pred_strg = "0" + z_pred + "об"
-                                        }
-                                        if(z_pred.toString().length == 4) {
-                                            z_pred_strg = z_pred + "об"
-                                        }
-                                        $(this).find(".list").val(z_pred_strg)
-                                    }
-                                    z_s_pred = "0"
                                 }
-                            }
-                        })
+                            })
+                        }
                     }
                 }
             })
@@ -492,13 +580,24 @@ $(document).ready(function() {
         var z_s_pred = "0"
         var scet7 = 0
         var scet9 = 0
+
+        if ($('#withoutFrills').is(':checked')) {
+            withoutFrills = true;
+        } else {
+            withoutFrills = false;
+        }
+
         $("tr.item").each(function() {
             scet7 = scet7 + 1
         })
         $("tr.item").each(function() {
-            scet9 = scet9 + 1
+            scet9 = scet9 + 1;
+
+            if($(this).find(".list").val().includes("0бл")) {
+                return;
+            }
             if(provt == "0") {
-                console.log("ОК")
+                //console.log("ОК")
             } else {
                 ///////start
                 z_s = $(this).find(".list").val()
@@ -506,118 +605,29 @@ $(document).ready(function() {
                     z_pred = "0"
                     $(this).find(".list").val("0бл")
                 } else {
-                    if(testsize == 0) {
-                        if($(this).attr('data-wf') < $(this).attr('data-hf')) {
-                            if(z_s_pred == "0") {
-                                if((!z_pred_str.toString().includes("об"))) {
-                                    if(z_pred == "0") {
-                                        z_pred = '1'
-                                        $(this).find(".list").val("1")
-                                    } else {
-                                        z_pred_str = z_pred + "об"
-                                        if(z_pred.toString().length == 1) {
-                                            z_pred_strg = "000" + z_pred + "об"
-                                        }
-                                        if(z_pred.toString().length == 2) {
-                                            z_pred_strg = "00" + z_pred + "об"
-                                        }
-                                        if(z_pred.toString().length == 3) {
-                                            z_pred_strg = "0" + z_pred + "об"
-                                        }
-                                        if(z_pred.toString().length == 4) {
-                                            z_pred_strg = z_pred + "об"
-                                        }
-                                        $(this).find(".list").val(z_pred_strg)
-                                    }
-                                } else {
-                                    z_pred = parseInt(z_pred)
-                                    z_s = z_pred + 1
-                                    z_pred = z_s
-                                    z_pred_str = z_s
-                                    if(z_s.toString().length == 1) {
-                                        z_s = "000" + z_s
-                                    }
-                                    if(z_s.toString().length == 2) {
-                                        z_s = "00" + z_s
-                                    }
-                                    if(z_s.toString().length == 3) {
-                                        z_s = "0" + z_s
-                                    }
-                                    if(z_s.toString().length == 4) {
-                                        z_s = z_s
-                                    }
-                                    $(this).find(".list").val(z_s)
-                                }
-                            } else {
-                                z_pred_str = z_pred + "об"
-                                if(z_pred.toString().length == 1) {
-                                    z_pred_strg = "000" + z_pred + "об"
-                                }
-                                if(z_pred.toString().length == 2) {
-                                    z_pred_strg = "00" + z_pred + "об"
-                                }
-                                if(z_pred.toString().length == 3) {
-                                    z_pred_strg = "0" + z_pred + "об"
-                                }
-                                if(z_pred.toString().length == 4) {
-                                    z_pred_strg = z_pred + "об"
-                                }
-                                $(this).find(".list").val(z_pred_strg)
-                            }
-                            z_s_pred = "0"
-                        } else {
-                            z_s_pred = "1"
-                            z_predt = z_pred
-                            z_pred = parseInt(z_pred)
-                            t2 = z_pred + 1
-                            if(z_predt.toString().length == 1) {
-                                z_predt = "000" + z_pred
-                            }
-                            if(z_predt.toString().length == 2) {
-                                z_predt = "00" + z_predt
-                            }
-                            if(z_predt.toString().length == 3) {
-                                z_predt = "0" + z_predt
-                            }
-                            if(z_predt.toString().length == 4) {
-                                z_predt = z_predt
-                            }
-                            if(t2.toString().length == 1) {
-                                t2 = "000" + t2
-                            }
-                            if(t2.toString().length == 2) {
-                                t2 = "00" + t2
-                            }
-                            if(t2.toString().length == 3) {
-                                t2 = "0" + t2
-                            }
-                            if(t2.toString().length == 4) {
-                                t2 = t2
-                            }
-                            z_s = z_predt + "об_" + (t2) + "л"
-                            z_pred = z_pred + 1
-                            $(this).find(".list").val(z_s)
-                        }
-                    } else {
-                        if((!z_pred_str.toString().includes("об"))) {
+                    if (withoutFrills == true) {
+                        if(z_s_pred == "0") {
                             if(z_pred == "0") {
                                 z_pred = '1'
                                 $(this).find(".list").val("1")
                             } else {
-                                z_pred_str = z_pred + "об"
-                                if(z_pred.toString().length == 1) {
-                                    z_pred_strg = "000" + z_pred + "об"
+                                z_pred = parseInt(z_pred)
+                                z_s = z_pred + 1
+                                z_pred = z_s
+                                z_pred_str = z_s
+                                if(z_s.toString().length == 1) {
+                                    z_s = "000" + z_s
                                 }
-                                if(z_pred.toString().length == 2) {
-                                    z_pred_strg = "00" + z_pred + "об"
+                                if(z_s.toString().length == 2) {
+                                    z_s = "00" + z_s
                                 }
-                                if(z_pred.toString().length == 3) {
-                                    z_pred_strg = "0" + z_pred + "об"
+                                if(z_s.toString().length == 3) {
+                                    z_s = "0" + z_s
                                 }
-                                if(z_pred.toString().length == 4) {
-                                    z_pred_strg = z_pred + "об"
+                                if(z_s.toString().length == 4) {
+                                    z_s = z_s
                                 }
-                                $(this).find(".list").val(z_pred_strg)
+                                $(this).find(".list").val(z_s)
                             }
                         } else {
                             z_pred = parseInt(z_pred)
@@ -638,7 +648,142 @@ $(document).ready(function() {
                             }
                             $(this).find(".list").val(z_s)
                         }
+                    }else{
+                        if(testsize == 0) {
+                            if($(this).attr('data-wf') < $(this).attr('data-hf')) {
+                                if(z_s_pred == "0") {
+                                    if((!z_pred_str.toString().includes("об"))) {
+                                        if(z_pred == "0") {
+                                            z_pred = '1'
+                                            $(this).find(".list").val("1")
+                                        } else {
+                                            z_pred_str = z_pred + "об"
+                                            if(z_pred.toString().length == 1) {
+                                                z_pred_strg = "000" + z_pred + "об"
+                                            }
+                                            if(z_pred.toString().length == 2) {
+                                                z_pred_strg = "00" + z_pred + "об"
+                                            }
+                                            if(z_pred.toString().length == 3) {
+                                                z_pred_strg = "0" + z_pred + "об"
+                                            }
+                                            if(z_pred.toString().length == 4) {
+                                                z_pred_strg = z_pred + "об"
+                                            }
+                                            $(this).find(".list").val(z_pred_strg)
+                                        }
+                                    } else {
+                                        z_pred = parseInt(z_pred)
+                                        z_s = z_pred + 1
+                                        z_pred = z_s
+                                        z_pred_str = z_s
+                                        if(z_s.toString().length == 1) {
+                                            z_s = "000" + z_s
+                                        }
+                                        if(z_s.toString().length == 2) {
+                                            z_s = "00" + z_s
+                                        }
+                                        if(z_s.toString().length == 3) {
+                                            z_s = "0" + z_s
+                                        }
+                                        if(z_s.toString().length == 4) {
+                                            z_s = z_s
+                                        }
+                                        $(this).find(".list").val(z_s)
+                                    }
+                                } else {
+                                    z_pred_str = z_pred + "об"
+                                    if(z_pred.toString().length == 1) {
+                                        z_pred_strg = "000" + z_pred + "об"
+                                    }
+                                    if(z_pred.toString().length == 2) {
+                                        z_pred_strg = "00" + z_pred + "об"
+                                    }
+                                    if(z_pred.toString().length == 3) {
+                                        z_pred_strg = "0" + z_pred + "об"
+                                    }
+                                    if(z_pred.toString().length == 4) {
+                                        z_pred_strg = z_pred + "об"
+                                    }
+                                    $(this).find(".list").val(z_pred_strg)
+                                }
+                                z_s_pred = "0"
+                            } else {
+                                z_s_pred = "1"
+                                z_predt = z_pred
+                                z_pred = parseInt(z_pred)
+                                t2 = z_pred + 1
+                                if(z_predt.toString().length == 1) {
+                                    z_predt = "000" + z_pred
+                                }
+                                if(z_predt.toString().length == 2) {
+                                    z_predt = "00" + z_predt
+                                }
+                                if(z_predt.toString().length == 3) {
+                                    z_predt = "0" + z_predt
+                                }
+                                if(z_predt.toString().length == 4) {
+                                    z_predt = z_predt
+                                }
+                                if(t2.toString().length == 1) {
+                                    t2 = "000" + t2
+                                }
+                                if(t2.toString().length == 2) {
+                                    t2 = "00" + t2
+                                }
+                                if(t2.toString().length == 3) {
+                                    t2 = "0" + t2
+                                }
+                                if(t2.toString().length == 4) {
+                                    t2 = t2
+                                }
+                                z_s = z_predt + "об_" + (t2) + "л"
+                                z_pred = z_pred + 1
+                                $(this).find(".list").val(z_s)
+                            }
+                        } else {
+                            if((!z_pred_str.toString().includes("об"))) {
+                                if(z_pred == "0") {
+                                    z_pred = '1'
+                                    $(this).find(".list").val("1")
+                                } else {
+                                    z_pred_str = z_pred + "об"
+                                    if(z_pred.toString().length == 1) {
+                                        z_pred_strg = "000" + z_pred + "об"
+                                    }
+                                    if(z_pred.toString().length == 2) {
+                                        z_pred_strg = "00" + z_pred + "об"
+                                    }
+                                    if(z_pred.toString().length == 3) {
+                                        z_pred_strg = "0" + z_pred + "об"
+                                    }
+                                    if(z_pred.toString().length == 4) {
+                                        z_pred_strg = z_pred + "об"
+                                    }
+                                    $(this).find(".list").val(z_pred_strg)
+                                }
+                            } else {
+                                z_pred = parseInt(z_pred)
+                                z_s = z_pred + 1
+                                z_pred = z_s
+                                z_pred_str = z_s
+                                if(z_s.toString().length == 1) {
+                                    z_s = "000" + z_s
+                                }
+                                if(z_s.toString().length == 2) {
+                                    z_s = "00" + z_s
+                                }
+                                if(z_s.toString().length == 3) {
+                                    z_s = "0" + z_s
+                                }
+                                if(z_s.toString().length == 4) {
+                                    z_s = z_s
+                                }
+                                $(this).find(".list").val(z_s)
+                            }
+                        }
                     }
+
                 }
                 ///////stop
             }
@@ -946,6 +1091,7 @@ $(document).ready(function() {
     }
 
     function searchNumberDelo(){
+        var testSend = true;
         let text_main = '{';
         text_main = text_main + '"abbr_arh": "' + $("#abbr_arh").val() + '", ';
         text_main = text_main + '"n_fonda": ' + $("#n_fonda").val() + ',';
@@ -957,23 +1103,32 @@ $(document).ready(function() {
             "text_main": text_main
         };
 
-        $.post('bd_get_info_by_delo.php', dateid, function(data) {
-            data = JSON.parse(data)
+        $.ajax({
+            type: 'POST',
+            url: 'bd_get_info_by_delo.php',
+            data: dateid,
+            success: function(data){
+                data = JSON.parse(data)
 
-            if(data['success'] == "true") {
-                toastr.success(data['text']);
-            }else{
-                toastr.error(data['text']);
-            }
-        })
+                if(data['success'] == "true") {
+                    toastr.success(data['text']);
+                }else{
+                    toastr.error(data['text']);
+                    testSend = false;
+                }
+            },
+            async:false
+          });
+
+          return testSend;
     }
 
     $(document).on('click', '#save_1', function() {
-        if(validation() == false) {
+        if (validation() == false) {
             return;
         }
 
-        if(searchNumberDelo() == false) {
+        if (searchNumberDelo() == false) {
             return;
         }
 
@@ -981,26 +1136,6 @@ $(document).ready(function() {
         saveBD('bd_insert.php');
     });
 
-    $(document).on('click', '#save_2', function() {
-        setNameAndDirectScan();
-        saveBD('bd_2.php');
-    });
-
-    $(document).on('click', '#save_3', function() {
-        setNameAndDirectScan();
-        saveBD('bd_3.php');
-    });
-
-    $(document).on('click', '#save_4', function() {
-        setNameAndDirectScan();
-        saveBD('bd_4.php');
-    });
-
-    $(document).on('click', '#save_5', function() {
-        setNameAndDirectScan();
-        saveBD('bd_5.php');
-    });    
-    
     $(document).on('click', '#get_info_by_delo', function() {
         searchNumberDelo()
     });

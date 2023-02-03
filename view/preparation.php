@@ -5,6 +5,7 @@
 			<h1>Подготовка файлов</h1>
             <p>Раздел предназначен для переименования файлов и сохранение в БД информации о файлах (процесс индексации).</p>
             <p>При успешном переименовании и сохранении информации в БД появится уведомление.</p>
+            <p>При выборе функции "Без обороток", не нужно включать функцию "Одностраничные".</p>
 			<hr>
         </div>
 	</div>
@@ -31,7 +32,11 @@
                     <div class="row text-center">
                         <div class='col'>
                             <input type="checkbox" id="scales" name="scales">
-                            <label for="scales">ОДНОСТРАНИЧНЫЕ</label>
+                            <label for="scales">Одностраничные</label>
+                        </div>
+                        <div class='col'>
+                            <input type="checkbox" id="withoutFrills" name="withoutFrills">
+                            <label for="withoutFrills">Без обороток</label>
                         </div>
                         <div class='col'>
                             <div class="input-group">

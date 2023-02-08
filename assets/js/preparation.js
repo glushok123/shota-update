@@ -353,6 +353,9 @@ $(document).ready(function() {
             if($("#n_dela").val() != "") {
                 name_f = name_f + "_" + $("#n_dela").val()
             }
+            if($("#l_dela").val() != "") {
+                name_f = name_f + $("#l_dela").val()
+            }
             name_f = name_f + "_" + $(this).find(".list").val()
             if($(".r_sm").val() != "") {
                 name_f = name_f + "_" + $(".r_sm").val()
@@ -387,6 +390,9 @@ $(document).ready(function() {
             }
             if($("#n_dela").val() != "") {
                 name_f = name_f + "_" + $("#n_dela").val()
+            }
+            if($("#l_dela").val() != "") {
+                name_f = name_f + $("#l_dela").val()
             }
             name_f = name_f + "_" + $(this).find(".list").val()
             if($(".r_sm").val() != "") {
@@ -423,6 +429,9 @@ $(document).ready(function() {
             if($("#n_dela").val() != "") {
                 name_f = name_f + "_" + $("#n_dela").val()
             }
+            if($("#l_dela").val() != "") {
+                name_f = name_f + $("#l_dela").val()
+            }
             name_f = name_f + "_" + $(this).find(".list").val()
             if($(".r_sm").val() != "") {
                 name_f = name_f + "_" + $(".r_sm").val()
@@ -457,6 +466,9 @@ $(document).ready(function() {
             }
             if($("#n_dela").val() != "") {
                 name_f = name_f + "_" + $("#n_dela").val()
+            }
+            if($("#l_dela").val() != "") {
+                name_f = name_f + $("#l_dela").val()
             }
             name_f = name_f + "_" + $(this).find(".list").val()
             if($(".r_sm").val() != "") {
@@ -493,6 +505,9 @@ $(document).ready(function() {
             if($("#n_dela").val() != "") {
                 name_f = name_f + "_" + $("#n_dela").val()
             }
+            if($("#l_dela").val() != "") {
+                name_f = name_f + $("#l_dela").val()
+            }
             name_f = name_f + "_" + $(this).find(".list").val()
             if($(".r_sm").val() != "") {
                 name_f = name_f + "_" + $(".r_sm").val()
@@ -527,6 +542,9 @@ $(document).ready(function() {
             }
             if($("#n_dela").val() != "") {
                 name_f = name_f + "_" + $("#n_dela").val()
+            }
+            if($("#l_dela").val() != "") {
+                name_f = name_f + $("#l_dela").val()
             }
             name_f = name_f + "_" + $(this).find(".list").val()
             if($(".r_sm").val() != "") {
@@ -563,6 +581,9 @@ $(document).ready(function() {
             if($("#n_dela").val() != "") {
                 name_f = name_f + "_" + $("#n_dela").val()
             }
+            if($("#l_dela").val() != "") {
+                name_f = name_f + $("#l_dela").val()
+            }
             name_f = name_f + "_" + $(this).find(".list").val()
             if($(".r_sm").val() != "") {
                 name_f = name_f + "_" + $(".r_sm").val()
@@ -572,6 +593,77 @@ $(document).ready(function() {
         });
     })
 
+    $('#l_dela').on('blur', function() {
+        $("tr.item").each(function() {
+            let name_f = ""
+            if($(".n_am").val() != "") {
+                name_f = name_f + $(".n_am").val() + "_"
+            }
+            if($(".l_fm").val() != "") {
+                name_f = name_f + $(".l_fm").val()
+            }
+            if($(".n_fm").val() != "") {
+                name_f = name_f + $(".n_fm").val() + "_"
+            }
+            if($(".n_om").val() != "") {
+                name_f = name_f + $(".n_om").val()
+            }
+            if($(".l_om").val() != "") {
+                name_f = name_f + $(".l_om").val()
+            }
+            if($(".t_om").val() != "") {
+                /*name_f = name_f+ "_" +$(".t_om").val()*/
+            }
+            if($("#n_dela").val() != "") {
+                name_f = name_f + "_" + $("#n_dela").val()
+            }
+            if($("#l_dela").val() != "") {
+                name_f = name_f + $("#l_dela").val()
+            }
+            name_f = name_f + "_" + $(this).find(".list").val()
+            if($(".r_sm").val() != "") {
+                name_f = name_f + "_" + $(".r_sm").val()
+            }
+            name_f = name_f + ".JPG"
+            $(this).find(".name_file").val(name_f);
+        });
+    })
+
+    $('#n_dela').on('blur', function() {
+        $("tr.item").each(function() {
+            let name_f = ""
+            if($(".n_am").val() != "") {
+                name_f = name_f + $(".n_am").val() + "_"
+            }
+            if($(".l_fm").val() != "") {
+                name_f = name_f + $(".l_fm").val()
+            }
+            if($(".n_fm").val() != "") {
+                name_f = name_f + $(".n_fm").val() + "_"
+            }
+            if($(".n_om").val() != "") {
+                name_f = name_f + $(".n_om").val()
+            }
+            if($(".l_om").val() != "") {
+                name_f = name_f + $(".l_om").val()
+            }
+            if($(".t_om").val() != "") {
+                /*name_f = name_f+ "_" +$(".t_om").val()*/
+            }
+            if($("#n_dela").val() != "") {
+                name_f = name_f + "_" + $("#n_dela").val()
+            }
+            if($("#l_dela").val() != "") {
+                name_f = name_f + $("#l_dela").val()
+            }
+            name_f = name_f + "_" + $(this).find(".list").val()
+            if($(".r_sm").val() != "") {
+                name_f = name_f + "_" + $(".r_sm").val()
+            }
+            name_f = name_f + ".JPG"
+            $(this).find(".name_file").val(name_f);
+        });
+    })
     $(document).on('blur', '.list', function() {
         $(this).parents().attr("data-prov", "tru")
         var provt = "0"
@@ -840,6 +932,40 @@ $(document).ready(function() {
             }*/
             if($("#n_dela").val() != "") {
                 name_f = name_f + "_" + $("#n_dela").val()
+            }
+            name_f = name_f + "_" + $(this).find(".list").val()
+            if($(".r_sm").val() != "") {
+                name_f = name_f + "_" + $(".r_sm").val()
+            }
+            name_f = name_f + ".JPG"
+            $(this).find(".name_file").val(name_f);
+        });
+
+        $("tr.item").each(function() {
+            let name_f = ""
+            if($(".n_am").val() != "") {
+                name_f = name_f + $(".n_am").val() + "_"
+            }
+            if($(".l_fm").val() != "") {
+                name_f = name_f + $(".l_fm").val()
+            }
+            if($(".n_fm").val() != "") {
+                name_f = name_f + $(".n_fm").val() + "_"
+            }
+            if($(".n_om").val() != "") {
+                name_f = name_f + $(".n_om").val()
+            }
+            if($(".l_om").val() != "") {
+                name_f = name_f + $(".l_om").val()
+            }
+            if($(".t_om").val() != "") {
+                /*name_f = name_f+ "_" +$(".t_om").val()*/
+            }
+            if($("#n_dela").val() != "") {
+                name_f = name_f + "_" + $("#n_dela").val()
+            }
+            if($("#l_dela").val() != "") {
+                name_f = name_f + $("#l_dela").val()
             }
             name_f = name_f + "_" + $(this).find(".list").val()
             if($(".r_sm").val() != "") {

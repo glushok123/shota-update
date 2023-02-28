@@ -44,7 +44,7 @@ $(document).ready(function() {
     
                                 if(z_pred == "-1") {
                                     z_pred = "0"
-                                    $(this).find(".list").val("0бл")
+                                    $(this).find(".list").val("!обл")
                                 } else {
                                     if(z_s_pred == "0") {
                                         if((! z_pred_str.toString().includes("об"))) {
@@ -118,7 +118,7 @@ $(document).ready(function() {
     
                                 if(z_pred == "-1") {
                                     z_pred = "0"
-                                    $(this).find(".list").val("0бл")
+                                    $(this).find(".list").val("!обл")
                                 } else {
                                     if(testsize == 0) {
                                         if($(this).attr('data-wf') < $(this).attr('data-hf')) {
@@ -664,6 +664,7 @@ $(document).ready(function() {
             $(this).find(".name_file").val(name_f);
         });
     })
+
     $(document).on('blur', '.list', function() {
         $(this).parents().attr("data-prov", "tru")
         var provt = "0"
@@ -685,7 +686,7 @@ $(document).ready(function() {
         $("tr.item").each(function() {
             scet9 = scet9 + 1;
 
-            if($(this).find(".list").val().includes("0бл")) {
+            if($(this).find(".list").val().includes("!обл")) {
                 return;
             }
             if(provt == "0") {
@@ -695,7 +696,7 @@ $(document).ready(function() {
                 z_s = $(this).find(".list").val()
                 if(z_pred == "-1") {
                     z_pred = "0"
-                    $(this).find(".list").val("0бл")
+                    $(this).find(".list").val("!обл")
                 } else {
                     if (withoutFrills == true) {
                         if(z_s_pred == "0") {
@@ -990,7 +991,7 @@ $(document).ready(function() {
             z_s = $(this).find(".list").val()
             if(z_pred == "-1") {
                 z_pred = "0"
-                $(this).find(".list").val("0бл")
+                $(this).find(".list").val("!обл")
             } else {
                 if($(this).attr('data-wf') < $(this).attr('data-hf')) {
                     if(z_s_pred == "0") {

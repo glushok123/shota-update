@@ -1196,6 +1196,7 @@ $(document).ready(function() {
             return false;
         }
 
+        /*
         if(! $("#data_n").val()) {
             $("#data_n").addClass('is-invalid');
             toastr.error('Необходимо заполнить дату начала !');
@@ -1213,7 +1214,7 @@ $(document).ready(function() {
             toastr.error('Необходимо заполнить количество листов !');
             return false;
         }
-
+        */
         return true;
     }
 
@@ -1255,12 +1256,14 @@ $(document).ready(function() {
             return;
         }
 
+        /*//Проверка наличия дела в БД
         if (searchNumberDelo() == false) {
             return;
         }
+        */
 
         setNameAndDirectScan();
-        saveBD('bd_insert.php');
+        //saveBD('bd_insert.php'); // сохранение в БД
     });
 
     $(document).on('click', '#get_info_by_delo', function() {
